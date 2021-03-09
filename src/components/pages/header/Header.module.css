@@ -1,0 +1,48 @@
+.header {
+  width: 100vw;
+  height: 40px;
+  background-color: rgba(0, 0, 0, 0.1);
+  display: flex;
+  line-height: 40px;
+  padding: 4px;
+  position: fixed;
+}
+
+.header_search_area {
+  display: flex;
+  justify-content: flex-start;
+  flex-basis: 100%;
+}
+
+.header_title_list {
+  display: flex;
+  justify-content: center;
+  width: 80px;
+  flex-basis: 100%;
+}
+
+.header_title {
+  font-family: Impact;
+  font-weight: bold;
+  color: rgb(70, 70, 70);
+  height: 16px;
+  margin-left: 5px;
+}
+
+.header_list {
+  display: flex;
+  justify-content: flex-end;
+  flex-basis: 100%;
+}
+
+.ul {
+  display: flex;
+  list-style: none;
+  margin: 0;
+}
+
+.li {
+  font-size: 10px;
+  margin-right: 20px;
+  cursor: pointer;
+}
