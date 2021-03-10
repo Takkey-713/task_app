@@ -1,5 +1,9 @@
-本アプリはタスク管理アプリです。
-React-Hooksを用いて実装しています。
+本アプリはtask_appはReactを用いたタスク管理アプリです。
+Hooksで実装しています。
+
+サーバーサイドは[こちら](https://github.com/Takkey-713/api)になります。
+[api-practice](https://github.com/Takkey-713/api-practice)をもとに作成しております。
+
 
 ※アプリケーション動作GIF
 ![TaskApp](https://user-images.githubusercontent.com/70302566/110208807-a022de80-7ecc-11eb-908a-841ddfe21210.gif)
