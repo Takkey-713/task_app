@@ -1,10 +1,14 @@
 import axios from "axios";
 import { BoardType } from "../interfaces/interface";
+import { url } from "../common";
 type action = "fetchBoards" | "createBoards" | "updateBoards" | "deleteBoards";
 type parameter = { data: BoardType };
 
 const option = axios.create({
-  baseURL: "http://localhost:3001/boards",
+  baseURL:
+    process.env.NODE_ENV === "production"
+      ? `${url.production}/boards`
+      : `${url.development}/boards`,
   responseType: "json",
   withCredentials: true,
   headers: { "X-Requested-With": "XMLHttpRequest" },

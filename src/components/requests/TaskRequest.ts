@@ -1,5 +1,6 @@
 import axios from "axios";
 import { TaskType } from "../interfaces/interface";
+import { url } from "../common";
 
 type action =
   | "fetchTasks"
@@ -11,7 +12,10 @@ type action =
 type parameter = { data: TaskType };
 
 const option = axios.create({
-  baseURL: "http://localhost:3001/tasks",
+  baseURL:
+    process.env.NODE_ENV === "production"
+      ? `${url.production}/tasks`
+      : `${url.development}/tasks`,
   responseType: "json",
   withCredentials: true,
   headers: { "X-Requested-With": "XMLHttpRequest" },

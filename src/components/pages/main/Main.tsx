@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useContext } from "react";
 import { DataContext } from "../../../App";
 import { Board } from "./board/Board";
 import { BoardType, TaskType } from "../../interfaces/interface";

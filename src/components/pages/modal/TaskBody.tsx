@@ -25,9 +25,7 @@ export const TaskBody: React.FC<Props> = (props) => {
   const [deadlineDate, setDeadlineDate] = useState<string>(
     (props.task && props.task.deadline_date) || ""
   );
-  useEffect(() => {
-    console.log(boardId);
-  }, [boardId]);
+
   const onClickSubmit = async () => {
     const requestData = props.task
       ? {
