@@ -1,11 +1,15 @@
 import axios from "axios";
 import { registAuthData, loginAuthData } from "../interfaces/userAuth";
+import { url } from "../common";
 
 type action = "sign_in" | "sign_up" | "sign_out" | "check_login";
 type parameter = { data: registAuthData | loginAuthData };
 
 const option = axios.create({
-  baseURL: "http://localhost:3001",
+  baseURL:
+    process.env.NODE_ENV === "production"
+      ? url.production
+      : "http://localhost:3001",
   responseType: "json",
   withCredentials: true,
   headers: { "X-Requested-With": "XMLHttpRequest" },
