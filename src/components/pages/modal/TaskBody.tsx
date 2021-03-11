@@ -119,7 +119,7 @@ export const TaskBody: React.FC<Props> = (props) => {
         {props.task && (
           <select
             className={styles.select}
-            value={props.task?.board_id}
+            value={boardId}
             onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
               setBoardId(Number(e.target.value))
             }
