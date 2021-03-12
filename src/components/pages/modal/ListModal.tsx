@@ -1,12 +1,12 @@
 import React, { useState, useContext } from "react";
 import Modal from "react-modal";
-import { BoardType, TaskType } from "../../interfaces/interface";
-import { BoardRequest } from "../../requests/BoardRequest";
+import { BoardType, TaskType, ListType } from "../../interfaces/interface";
+import { ListRequest } from "../../requests/ListRequest";
 import { TaskRequest } from "../../requests/TaskRequest";
 import { DataContext } from "../../../App";
 import { FormModal } from "./FormModal";
 import DeleteIcon from "@material-ui/icons/Delete";
-import styles from "./style/boardModal.module.css";
+import styles from "./style/ListModal.module.css";
 import { useMediaQuery } from "../../hooks/useMediaQuery";
 import CloseIcon from "@material-ui/icons/Close";
 
@@ -41,14 +41,14 @@ const forMobileStyles = {
 
 interface Props {
   isOpen: boolean;
-  board: BoardType;
-  handleOnBoardModalClose: () => void;
+  list: ListType;
+  handleOnListModalClose: () => void;
   tasks?: TaskType[];
 }
 
 Modal.setAppElement("#root");
 
-export const BoardModal: React.FC<Props> = (props) => {
+export const ListModal: React.FC<Props> = (props) => {
   const { data, dispatch } = useContext(DataContext);
   const [isTaskOpen, setIsTaskOpen] = useState(false);
   // 既存のタスクをモーダルで表示するためのstate
@@ -56,18 +56,18 @@ export const BoardModal: React.FC<Props> = (props) => {
   // 新規タスクを追加するためのモーダルを表示するためのstate
   const mq = useMediaQuery();
 
-  const handleOnDeleteBoard = async () => {
+  const handleOnDeleteList = async () => {
     const requestData = {
-      id: props.board && props.board.id,
-      name: props.board && props.board.name,
+      id: props.list && props.list.id,
+      name: props.list && props.list.name,
     };
     try {
-      const boards: BoardType[] = await BoardRequest("deleteBoards", {
+      const lists: ListType[] = await ListRequest("deleteLists", {
         data: requestData,
       });
 
-      props.handleOnBoardModalClose();
-      dispatch({ type: "boardsUpdate", payload: { board: boards } });
+      props.handleOnListModalClose();
+      dispatch({ type: "listsUpdate", payload: { list: lists } });
     } catch (err) {
       alert("通信に失敗しました。");
     }
@@ -77,7 +77,7 @@ export const BoardModal: React.FC<Props> = (props) => {
     const requestData = {
       id: task.id,
       name: task.name,
-      board_id: task.board_id,
+      list_id: task.list_id,
     };
     try {
       const tasks: TaskType[] = await TaskRequest("deleteTasks", {
@@ -102,16 +102,16 @@ export const BoardModal: React.FC<Props> = (props) => {
       {mq.isPc && (
         <Modal
           isOpen={props.isOpen}
-          onRequestClose={props.handleOnBoardModalClose}
+          onRequestClose={props.handleOnListModalClose}
           style={forPcStyles}
         >
           <div className={styles.modal_body}>
             <CloseIcon
               style={{ cursor: "pointer" }}
               className={styles.task_close_icon}
-              onClick={() => props.handleOnBoardModalClose()}
+              onClick={() => props.handleOnListModalClose()}
             />
-            <div className={styles.board_title}>{props.board.name}</div>
+            <div className={styles.list_title}>{props.list.name}</div>
             <div className={styles.task_lists}>
               {props.tasks &&
                 props.tasks.map((task) => {
@@ -135,7 +135,7 @@ export const BoardModal: React.FC<Props> = (props) => {
                         isOpen={isTaskOpen}
                         handleClose={handleOnTaskModal}
                         task={task}
-                        board={props.board}
+                        list={props.list}
                         key={task.id}
                       />
                     </div>
@@ -152,12 +152,12 @@ export const BoardModal: React.FC<Props> = (props) => {
               <FormModal
                 isOpen={isShown}
                 handleClose={handleAddTaksModal}
-                board={props.board}
+                list={props.list}
               />
               <button
-                className={styles.board_delete_btn}
+                className={styles.list_delete_btn}
                 type="button"
-                onClick={handleOnDeleteBoard}
+                onClick={handleOnDeleteList}
               >
                 リストを削除する
               </button>
@@ -169,16 +169,16 @@ export const BoardModal: React.FC<Props> = (props) => {
       {mq.isMobile && (
         <Modal
           isOpen={props.isOpen}
-          onRequestClose={props.handleOnBoardModalClose}
+          onRequestClose={props.handleOnListModalClose}
           style={forMobileStyles}
         >
           <div className={styles.modal_body}>
             <CloseIcon
               style={{ cursor: "pointer" }}
               className={styles.task_close_icon}
-              onClick={() => props.handleOnBoardModalClose()}
+              onClick={() => props.handleOnListModalClose()}
             />
-            <div className={styles.board_title}>{props.board.name}</div>
+            <div className={styles.list_title}>{props.list.name}</div>
             <div className={styles.task_lists}>
               {props.tasks &&
                 props.tasks.map((task) => {
@@ -202,7 +202,7 @@ export const BoardModal: React.FC<Props> = (props) => {
                         isOpen={isTaskOpen}
                         handleClose={handleOnTaskModal}
                         task={task}
-                        board={props.board}
+                        list={props.list}
                         key={task.id}
                       />
                     </div>
@@ -219,12 +219,12 @@ export const BoardModal: React.FC<Props> = (props) => {
               <FormModal
                 isOpen={isShown}
                 handleClose={handleAddTaksModal}
-                board={props.board}
+                list={props.list}
               />
               <button
-                className={styles.board_delete_btn}
+                className={styles.list_delete_btn}
                 type="button"
-                onClick={handleOnDeleteBoard}
+                onClick={handleOnDeleteList}
               >
                 リストを削除する
               </button>

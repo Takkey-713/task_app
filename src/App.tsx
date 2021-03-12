@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { Home } from "./components/Home";
+import { Home } from "./components/pages/home/Home";
 import { AuthForm } from "./components/auth/AuthForm";
 import { AuthRequest } from "./components/requests/AuthRequest";
-import { BoardRequest } from "./components/requests/BoardRequest";
+import { ListRequest } from "./components/requests/ListRequest";
 import { TaskRequest } from "./components/requests/TaskRequest";
 import { UserType } from "./components/interfaces/interface";
 import {
@@ -64,9 +64,10 @@ export const App: React.FC = () => {
 
   // 初回マウンティングした時にデータベースのボードとタスクを全て持ってくる
   const fetchData = async () => {
-    const boards = await BoardRequest("fetchBoards");
+    // const boards = await BoardRequest("fetchBoards");
+    const lists = await ListRequest("fetchLists");
     const tasks = await TaskRequest("fetchTasks");
-    dispatch({ type: "boardsUpdate", payload: { board: boards } });
+    dispatch({ type: "listsUpdate", payload: { list: lists } });
     dispatch({ type: "tasksUpdate", payload: { task: tasks } });
   };
 

@@ -1,12 +1,12 @@
 import React, { useContext } from "react";
 import { DataContext } from "../../../App";
-import { Board } from "./board/Board";
-import { BoardType, TaskType } from "../../interfaces/interface";
+import { List } from "./list/List";
+import { BoardType, TaskType, ListType } from "../../interfaces/interface";
 import styles from "./Main.module.css";
 import { AddList } from "../main/addList/AddList";
 
 interface BoardsType {
-  boards: BoardType[];
+  lists: ListType[];
 }
 
 interface TasksType {
@@ -17,18 +17,18 @@ export const Main = () => {
   const { data, dispatch } = useContext(DataContext);
   return (
     <div className={styles.main}>
-      {data.boards &&
-        data.boards.map((ele) => {
+      {data.lists &&
+        data.lists.map((ele) => {
           const tasks = data.tasks.filter((task) => {
-            return task.board_id === ele.id;
+            return task.list_id === ele.id;
           });
           return (
-            <div key={ele.id} className={styles.board_list}>
-              <Board tasks={tasks} board={ele} key={ele.id} />
+            <div key={ele.id} className={styles.list_list}>
+              <List tasks={tasks} list={ele} key={ele.id} />
             </div>
           );
         })}
-      <div className={styles.board_list}>
+      <div className={styles.list_list}>
         <AddList />
       </div>
     </div>

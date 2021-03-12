@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Header } from "./pages/header/Header";
-import { Main } from "./pages/main/Main";
+import { Header } from "../header/Header";
+import { Main } from "../main/Main";
 import "./Home.css";
 
 interface Props {

@@ -1,14 +1,14 @@
 import React, { useState, useContext, useEffect } from "react";
 import styles from "./style/TaskModal.module.css";
 import { TaskRequest } from "../../requests/TaskRequest";
-import { TaskType, BoardType } from "../../interfaces/interface";
+import { TaskType, BoardType, ListType } from "../../interfaces/interface";
 import { DataContext } from "../../../App";
 import CloseIcon from "@material-ui/icons/Close";
 
 interface Props {
   task?: TaskType;
   handleOnClose: () => void;
-  board: BoardType;
+  list: ListType;
 }
 
 export const TaskBody: React.FC<Props> = (props) => {
@@ -16,8 +16,8 @@ export const TaskBody: React.FC<Props> = (props) => {
   const [title, setTitle] = useState<string>(
     (props.task && props.task.name) || ""
   );
-  const [boardId, setBoardId] = useState<number>(
-    (props.task && props.task.board_id) || props.board.id
+  const [listId, setListId] = useState<number>(
+    (props.task && props.task.list_id) || props.list.id
   );
   const [explanation, setExplanation] = useState<string>(
     (props.task && props.task.explanation) || ""
@@ -31,13 +31,13 @@ export const TaskBody: React.FC<Props> = (props) => {
       ? {
           id: props.task && props.task.id,
           name: title,
-          board_id: boardId,
+          list_id: listId,
           explanation: explanation,
           deadline_date: deadlineDate,
         }
       : {
           name: title,
-          board_id: props.board.id,
+          list_id: props.list.id,
           explanation: explanation,
           deadline_date: deadlineDate,
         };
@@ -60,7 +60,7 @@ export const TaskBody: React.FC<Props> = (props) => {
     const requestData = {
       id: props.task && props.task.id,
       name: title,
-      board_id: boardId,
+      list_id: listId,
     };
     try {
       const tasks: TaskType[] = await TaskRequest("deleteTasks", {
@@ -119,16 +119,16 @@ export const TaskBody: React.FC<Props> = (props) => {
         {props.task && (
           <select
             className={styles.select}
-            value={boardId}
+            value={listId}
             onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
-              setBoardId(Number(e.target.value))
+              setListId(Number(e.target.value))
             }
           >
-            {data.boards &&
-              data.boards.map((board: BoardType) => {
+            {data.lists &&
+              data.lists.map((list: ListType) => {
                 return (
-                  <option key={board.id} value={board.id}>
-                    {board.name}
+                  <option key={list.id} value={list.id}>
+                    {list.name}
                   </option>
                 );
               })}
@@ -137,12 +137,12 @@ export const TaskBody: React.FC<Props> = (props) => {
         {!props.task && (
           <select
             className={styles.select}
-            value={props.board.id}
+            value={props.list.id}
             onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
-              setBoardId(Number(e.target.value))
+              setListId(Number(e.target.value))
             }
           >
-            <option value={props.board.id}>{props.board.name}</option>
+            <option value={props.list.id}>{props.list.name}</option>
           </select>
         )}
       </div>

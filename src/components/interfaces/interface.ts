@@ -13,10 +13,17 @@ export interface TaskType {
   name: string;
   explanation?: string;
   deadline_date?: string;
-  board_id: number;
+  list_id: number;
+  // board_id: number;
 }
 
 export interface UserType {
   id?: number;
   email: string;
+}
+
+export interface ListType {
+  id: number;
+  name: string;
+  // board_id: number;
 }

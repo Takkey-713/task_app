@@ -1,4 +1,4 @@
-.add_board {
+.add_list {
   background-color: rgba(0, 0, 0, 0.08);
   max-height: 44px;
   width: 100%;
@@ -8,18 +8,18 @@
   box-sizing: border-box;
 }
 
-.add_board :hover {
+.add_list :hover {
   opacity: 0.5;
 }
 
-.add_board_form {
+.add_list_form {
   background-color: rgba(0, 0, 0, 0.1);
   width: 100%;
   padding: 10px;
   border-radius: 5px;
 }
 
-.board_textarea {
+.list_textarea {
   width: 100%;
   border: none;
   border-radius: 5px;

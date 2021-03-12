@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import { BoardType, TaskType } from "../../../interfaces/interface";
+import { BoardType, TaskType, ListType } from "../../../interfaces/interface";
 import styles from "./Task.module.css";
 import { FormModal } from "../../modal/FormModal";
 
 interface Props {
   task: TaskType;
-  board: BoardType;
+  list: ListType;
 }
 
 export const Task: React.FC<Props> = (props) => {
@@ -37,7 +37,7 @@ export const Task: React.FC<Props> = (props) => {
         handleClose={handleClose}
         isOpen={isOpen}
         task={props.task}
-        board={props.board}
+        list={props.list}
       />
     </>
   );
