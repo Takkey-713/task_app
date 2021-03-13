@@ -3,13 +3,13 @@ import { TaskType, BoardType, ListType } from "../interfaces/interface";
 
 export type Data = {
   tasks: TaskType[];
-  // boards: BoardType[];
+  boards: BoardType[];
   lists: ListType[];
 };
 
 export type dataAction = {
-  type: "tasksUpdate" | "listsUpdate";
-  payload: { task?: TaskType[]; list?: ListType[] };
+  type: "tasksUpdate" | "listsUpdate" | "boardsUpdate";
+  payload: { task?: TaskType[]; list?: ListType[]; board?: BoardType[] };
 };
 
 export const useDataReducer = (): [
@@ -27,6 +27,7 @@ export const useDataReducer = (): [
       },
     ],
     lists: [{ id: 0, name: "" }],
+    boards: [{ id: 0, name: "" }],
   };
 
   const reducer = (state: Data, action: dataAction) => {
@@ -35,6 +36,8 @@ export const useDataReducer = (): [
         return { ...state, tasks: action.payload.task || state.tasks };
       case "listsUpdate":
         return { ...state, lists: action.payload.list || state.lists };
+      case "boardsUpdate":
+        return { ...state, boards: action.payload.board || state.boards };
     }
   };
   const [data, dispatch] = useReducer(reducer, initialData);

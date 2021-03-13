@@ -4,7 +4,7 @@ export interface Status {
 }
 
 export interface BoardType {
-  id: number;
+  id?: number;
   name: string;
 }
 

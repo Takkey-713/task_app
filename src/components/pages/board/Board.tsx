@@ -1,17 +1,64 @@
 import React, { useState, useContext, useRef } from "react";
-import { BoardType, TaskType } from "../../../interfaces/interface";
+import { BoardType, TaskType } from "../../interfaces/interface";
 import styles from "./Board.module.css";
-import { Task } from "../task/Task";
-import { BoardRequest } from "../../../requests/BoardRequest";
-import { TaskRequest } from "../../../requests/TaskRequest";
-import { DataContext } from "../../../../App";
+import { Task } from "../main/task/Task";
+import { BoardModal } from "../modal/BoardModal";
+import { BoardRequest } from "../../requests/BoardRequest";
+import { TaskRequest } from "../../requests/TaskRequest";
+import { DataContext } from "../../../App";
+import { Link } from "react-router-dom";
 
-// interface Props {
-//   board: BoardType;
-//   tasks?: TaskType[];
-// }
+interface Props {
+  board: BoardType;
+}
 
-export const Board: React.FC = () => {
+export const Board: React.FC<Props> = (props) => {
+  const { data, dispatch } = useContext(DataContext);
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+
+  const handleOnBoardModalClose = () => {
+    setIsOpen(!isOpen);
+  };
+
+  return (
+    <div className={styles.board_main}>
+      <div
+        className={styles.new_options}
+        onClick={() => handleOnBoardModalClose()}
+      >
+        {/* ↑にクリックすると新規ボードを作成する関数を実行するようにする */}
+        <ul>
+          <li>
+            <h4>ボードを作成</h4>
+            <p>
+              ボードは、作成したさまざまなリストに必要な項目を記載したカードを順に並べて使用します。プロジェクト管理や情報の進捗管理など、あらゆることを整理、管理することができます。
+            </p>
+          </li>
+        </ul>
+      </div>
+
+      <div className={styles.all_boards}>
+        <ul>
+          {data.boards &&
+            data.boards.map((ele) => {
+              return (
+                <Link to={"/main/" + ele.id} className={styles.board_link}>
+                  {ele.name} <span></span>
+                  <li className={styles.board_list}>
+                    <div></div>
+                    <span></span>
+                  </li>
+                </Link>
+              );
+            })}
+        </ul>
+      </div>
+      <BoardModal
+        isOpen={isOpen}
+        handleOnBoardModalClose={handleOnBoardModalClose}
+      />
+    </div>
+  );
   // const [boardOpen, setBoardOpen] = useState(true);
   // const [taskAddIsOpen, setTaskAddIsOpen] = useState<boolean>(false);
   // const [boardName, setBoardName] = useState(props.board.name);

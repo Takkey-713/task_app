@@ -7,8 +7,8 @@ type parameter = { data: ListType };
 const option = axios.create({
   baseURL:
     process.env.NODE_ENV === "production"
-      ? `${url.production}/boards`
-      : `${url.development}/boards`,
+      ? `${url.production}/lists`
+      : `${url.development}/lists`,
   responseType: "json",
   withCredentials: true,
   headers: { "X-Requested-With": "XMLHttpRequest" },

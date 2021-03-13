@@ -5,7 +5,7 @@ import { BoardType, TaskType, ListType } from "../../interfaces/interface";
 import styles from "./Main.module.css";
 import { AddList } from "../main/addList/AddList";
 
-interface BoardsType {
+interface ListsType {
   lists: ListType[];
 }
 
@@ -23,12 +23,12 @@ export const Main = () => {
             return task.list_id === ele.id;
           });
           return (
-            <div key={ele.id} className={styles.list_list}>
+            <div key={ele.id} className={styles.list_lists}>
               <List tasks={tasks} list={ele} key={ele.id} />
             </div>
           );
         })}
-      <div className={styles.list_list}>
+      <div className={styles.list_lists}>
         <AddList />
       </div>
     </div>

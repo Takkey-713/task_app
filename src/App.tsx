@@ -1,4 +1,11 @@
 import React, { useState, useEffect } from "react";
+import {
+  Redirect,
+  Route,
+  Switch,
+  BrowserRouter as Router,
+  useHistory,
+} from "react-router-dom";
 import { Home } from "./components/pages/home/Home";
 import { AuthForm } from "./components/auth/AuthForm";
 import { AuthRequest } from "./components/requests/AuthRequest";
@@ -10,11 +17,13 @@ import {
   dataAction,
   useDataReducer,
 } from "./components/hooks/useDataReducer";
+import { BoardRequest } from "./components/requests/BoardRequest";
 
 type dataContextType = {
   data: Data;
   dispatch: ({ type, payload }: dataAction) => void;
 };
+// dataContextでユーザーの情報を渡してみる
 
 export const DataContext = React.createContext<dataContextType>(
   {} as dataContextType
@@ -29,11 +38,12 @@ export const App: React.FC = () => {
     id: 0,
     email: "",
   });
+  const history = useHistory();
   // eslint-disable-next-line
-  // userのstateは本アプリで必要になる
   const handleOnChangeStatus = (user: UserType): void => {
     setIsLoggedIn(!isLoggedIn);
     setUser(user);
+    window.history.pushState(null, "", "/");
   };
 
   const handleOnLogout = async () => {
@@ -42,6 +52,7 @@ export const App: React.FC = () => {
       if (!res.logged_in) {
         setIsLoggedIn(!isLoggedIn);
         setUser({ id: 0, email: "" });
+        window.history.pushState(null, "", "/");
       }
     } catch {
       alert("通信に失敗しました。");
@@ -54,6 +65,8 @@ export const App: React.FC = () => {
       if (res.logged_in && isLoggedIn === false) {
         setIsLoggedIn(true);
         setUser(res.user);
+        // pathが表示されるべきurlになるように調整する関数を呼び出す
+        // window.history.pushState(null, "", "/boards");
       } else if (res.status === 401) {
         setIsLoggedIn(false);
       }
@@ -65,8 +78,10 @@ export const App: React.FC = () => {
   // 初回マウンティングした時にデータベースのボードとタスクを全て持ってくる
   const fetchData = async () => {
     // const boards = await BoardRequest("fetchBoards");
+    const boards = await BoardRequest("fetchBoards");
     const lists = await ListRequest("fetchLists");
     const tasks = await TaskRequest("fetchTasks");
+    dispatch({ type: "boardsUpdate", payload: { board: boards } });
     dispatch({ type: "listsUpdate", payload: { list: lists } });
     dispatch({ type: "tasksUpdate", payload: { task: tasks } });
   };
@@ -76,7 +91,7 @@ export const App: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    checkLoginStatus();
+    // checkLoginStatus();
     fetchData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user]);
@@ -92,14 +107,19 @@ export const App: React.FC = () => {
   return (
     <DataContext.Provider value={{ data, dispatch }}>
       <>
-        {isLoggedIn ? (
-          <Home isLoggedIn={isLoggedIn} handleOnLogout={handleOnLogout} />
-        ) : (
-          <AuthForm
-            isLoggedIn={isLoggedIn}
-            handleOnChangeStatus={handleOnChangeStatus}
-          />
-        )}
+        <Router>
+          {isLoggedIn ? (
+            <Home
+              isLoggedIn={isLoggedIn}
+              handleOnLogout={handleOnLogout}
+            ></Home>
+          ) : (
+            <AuthForm
+              isLoggedIn={isLoggedIn}
+              handleOnChangeStatus={handleOnChangeStatus}
+            />
+          )}
+        </Router>
       </>
     </DataContext.Provider>
   );
