@@ -14,7 +14,7 @@ export interface TaskType {
   explanation?: string;
   deadline_date?: string;
   list_id: number;
-  // board_id: number;
+  board_id: number;
 }
 
 export interface UserType {
@@ -25,5 +25,5 @@ export interface UserType {
 export interface ListType {
   id: number;
   name: string;
-  // board_id: number;
+  board_id: number;
 }

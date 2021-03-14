@@ -11,10 +11,10 @@ const forPcStyles = {
   },
   content: {
     top: "44px",
-    left: "40vw",
-    right: "40vw",
-    height: "10vh",
-    width: "20vw",
+    left: "35vw",
+    right: "35vw",
+    height: "15vh",
+    width: "30vw",
     padding: "10px",
   },
 };

@@ -26,7 +26,7 @@ export const Home: React.FC<Props> = (props) => {
       />
       <Switch>
         <Route exact path="/" component={Board} />
-        <Route path="/main/:id" component={Main} />
+        <Route exact path="/main/:id" component={Main} />
       </Switch>
       {/* <Main /> */}
       {/* react-routerでHomeの中身を分けるので上記Mainコンポーネントは削除する */}

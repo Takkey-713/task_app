@@ -44,6 +44,7 @@ interface Props {
   list: ListType;
   handleOnListModalClose: () => void;
   tasks?: TaskType[];
+  boardId: number;
 }
 
 Modal.setAppElement("#root");
@@ -60,6 +61,7 @@ export const ListModal: React.FC<Props> = (props) => {
     const requestData = {
       id: props.list && props.list.id,
       name: props.list && props.list.name,
+      board_id: Number(props.boardId),
     };
     try {
       const lists: ListType[] = await ListRequest("deleteLists", {
@@ -78,6 +80,7 @@ export const ListModal: React.FC<Props> = (props) => {
       id: task.id,
       name: task.name,
       list_id: task.list_id,
+      board_id: props.boardId,
     };
     try {
       const tasks: TaskType[] = await TaskRequest("deleteTasks", {
@@ -136,6 +139,7 @@ export const ListModal: React.FC<Props> = (props) => {
                         handleClose={handleOnTaskModal}
                         task={task}
                         list={props.list}
+                        boardId={props.boardId}
                         key={task.id}
                       />
                     </div>
@@ -153,6 +157,7 @@ export const ListModal: React.FC<Props> = (props) => {
                 isOpen={isShown}
                 handleClose={handleAddTaksModal}
                 list={props.list}
+                boardId={props.boardId}
               />
               <button
                 className={styles.list_delete_btn}
@@ -204,6 +209,7 @@ export const ListModal: React.FC<Props> = (props) => {
                         task={task}
                         list={props.list}
                         key={task.id}
+                        boardId={props.boardId}
                       />
                     </div>
                   );
@@ -220,6 +226,7 @@ export const ListModal: React.FC<Props> = (props) => {
                 isOpen={isShown}
                 handleClose={handleAddTaksModal}
                 list={props.list}
+                boardId={props.boardId}
               />
               <button
                 className={styles.list_delete_btn}

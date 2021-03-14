@@ -37,6 +37,7 @@ interface Props {
   isOpen: boolean;
   task?: TaskType;
   list: ListType;
+  boardId: number;
 }
 
 export const FormModal = (props: Props) => {
@@ -56,9 +57,14 @@ export const FormModal = (props: Props) => {
               task={props.task}
               handleOnClose={props.handleClose}
               list={props.list}
+              boardId={props.boardId}
             />
           ) : (
-            <TaskBody handleOnClose={props.handleClose} list={props.list} />
+            <TaskBody
+              handleOnClose={props.handleClose}
+              list={props.list}
+              boardId={props.boardId}
+            />
           )}
         </Modal>
       )}
@@ -74,9 +80,14 @@ export const FormModal = (props: Props) => {
               task={props.task}
               handleOnClose={props.handleClose}
               list={props.list}
+              boardId={props.boardId}
             />
           ) : (
-            <TaskBody handleOnClose={props.handleClose} list={props.list} />
+            <TaskBody
+              handleOnClose={props.handleClose}
+              list={props.list}
+              boardId={props.boardId}
+            />
           )}
         </Modal>
       )}

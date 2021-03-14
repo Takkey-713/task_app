@@ -10,6 +10,7 @@ import { ListModal } from "../../../../components/pages/modal/ListModal";
 interface Props {
   list: ListType;
   tasks?: TaskType[];
+  boardId: number;
 }
 
 export const List: React.FC<Props> = (props) => {
@@ -36,6 +37,7 @@ export const List: React.FC<Props> = (props) => {
     const requestTaskData: TaskType = {
       name: taskName,
       list_id: props.list.id,
+      board_id: Number(props.boardId),
     };
 
     try {
@@ -54,6 +56,7 @@ export const List: React.FC<Props> = (props) => {
     const requestListData: ListType = {
       id: props.list.id,
       name: listName,
+      board_id: Number(props.boardId),
     };
 
     if (e.key === "Enter") {
@@ -103,6 +106,7 @@ export const List: React.FC<Props> = (props) => {
             list={props.list}
             handleOnListModalClose={handleOnListModalClose}
             tasks={props.tasks}
+            boardId={props.boardId}
           />
           {/* リストモーダルへ名前を変更する */}
         </div>
@@ -130,7 +134,7 @@ export const List: React.FC<Props> = (props) => {
           props.tasks.map((task: TaskType) => {
             return (
               <div key={task.id}>
-                <Task task={task} list={props.list} />
+                <Task task={task} list={props.list} boardId={props.boardId} />
                 <div className="scroll_ref" ref={ref}></div>
               </div>
             );

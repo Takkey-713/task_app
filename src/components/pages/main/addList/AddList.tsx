@@ -4,7 +4,11 @@ import styles from "./AddList.module.css";
 import { ListRequest } from "../../../requests/ListRequest";
 import { BoardType, ListType } from "../../../interfaces/interface";
 
-export const AddList = () => {
+interface Props {
+  boardId: number;
+}
+
+export const AddList: React.FC<Props> = (props) => {
   const [listDisplay, setListDisplay] = useState(true);
   const [name, setName] = useState("");
   const { data, dispatch } = useContext(DataContext);
@@ -12,6 +16,7 @@ export const AddList = () => {
   const newData: ListType = {
     id: 0,
     name: name,
+    board_id: Number(props.boardId),
   };
 
   const onClickSubmit = async () => {

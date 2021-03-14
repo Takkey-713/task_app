@@ -9,6 +9,7 @@ interface Props {
   task?: TaskType;
   handleOnClose: () => void;
   list: ListType;
+  boardId: number;
 }
 
 export const TaskBody: React.FC<Props> = (props) => {
@@ -34,12 +35,14 @@ export const TaskBody: React.FC<Props> = (props) => {
           list_id: listId,
           explanation: explanation,
           deadline_date: deadlineDate,
+          board_id: props.boardId,
         }
       : {
           name: title,
           list_id: props.list.id,
           explanation: explanation,
           deadline_date: deadlineDate,
+          board_id: props.boardId,
         };
 
     try {
@@ -61,6 +64,7 @@ export const TaskBody: React.FC<Props> = (props) => {
       id: props.task && props.task.id,
       name: title,
       list_id: listId,
+      board_id: props.boardId,
     };
     try {
       const tasks: TaskType[] = await TaskRequest("deleteTasks", {

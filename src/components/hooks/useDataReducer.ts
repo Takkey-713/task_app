@@ -24,9 +24,10 @@ export const useDataReducer = (): [
         explanation: "",
         deadline_date: "",
         list_id: 0,
+        board_id: 0,
       },
     ],
-    lists: [{ id: 0, name: "" }],
+    lists: [{ id: 0, name: "", board_id: 0 }],
     boards: [{ id: 0, name: "" }],
   };
 

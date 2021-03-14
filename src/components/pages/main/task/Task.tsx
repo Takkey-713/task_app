@@ -6,6 +6,7 @@ import { FormModal } from "../../modal/FormModal";
 interface Props {
   task: TaskType;
   list: ListType;
+  boardId: number;
 }
 
 export const Task: React.FC<Props> = (props) => {
@@ -38,6 +39,7 @@ export const Task: React.FC<Props> = (props) => {
         isOpen={isOpen}
         task={props.task}
         list={props.list}
+        boardId={props.boardId}
       />
     </>
   );
