@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { HashRouter as Router } from "react-router-dom";
+import { BrowserRouter as Router } from "react-router-dom";
 import { Home } from "./components/pages/home/Home";
 import { AuthForm } from "./components/auth/AuthForm";
 import { AuthRequest } from "./components/requests/AuthRequest";

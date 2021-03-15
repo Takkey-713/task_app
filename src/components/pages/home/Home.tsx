@@ -3,6 +3,7 @@ import { Route, Switch } from "react-router-dom";
 import { Header } from "../header/Header";
 import { Board } from "../board/Board";
 import { Main } from "../main/Main";
+import { url } from "../../common";
 import "./Home.css";
 
 interface Props {
@@ -11,6 +12,7 @@ interface Props {
 }
 
 export const Home: React.FC<Props> = (props) => {
+  const pathName = `${url.production}/main/:id`;
   return (
     <div className="main">
       <Header
@@ -19,7 +21,11 @@ export const Home: React.FC<Props> = (props) => {
       />
       <Switch>
         <Route exact path="/" component={Board} />
-        <Route exact path="/main/:id" component={Main} />
+        {process.env.NODE_ENV === "production" ? (
+          <Route exact path={pathName} component={Main} />
+        ) : (
+          <Route exact path="/main/:id" component={Main} />
+        )}
       </Switch>
     </div>
   );
