@@ -1,12 +1,5 @@
-import React, { useState, useEffect } from "react";
-import {
-  Redirect,
-  Route,
-  Switch,
-  BrowserRouter,
-  useHistory,
-} from "react-router-dom";
-import axios from "axios";
+import React from "react";
+import { Route, Switch } from "react-router-dom";
 import { Header } from "../header/Header";
 import { Board } from "../board/Board";
 import { Main } from "../main/Main";
@@ -28,8 +21,6 @@ export const Home: React.FC<Props> = (props) => {
         <Route exact path="/" component={Board} />
         <Route exact path="/main/:id" component={Main} />
       </Switch>
-      {/* <Main /> */}
-      {/* react-routerでHomeの中身を分けるので上記Mainコンポーネントは削除する */}
     </div>
   );
 };

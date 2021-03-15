@@ -1,8 +1,9 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext } from "react";
 import styles from "./style/TaskModal.module.css";
 import { TaskRequest } from "../../requests/TaskRequest";
-import { TaskType, BoardType, ListType } from "../../interfaces/interface";
+import { TaskType, ListType } from "../../interfaces/interface";
 import { DataContext } from "../../../App";
+import { filterLists } from "../../functions/DataFilter";
 import CloseIcon from "@material-ui/icons/Close";
 
 interface Props {
@@ -128,8 +129,8 @@ export const TaskBody: React.FC<Props> = (props) => {
               setListId(Number(e.target.value))
             }
           >
-            {data.lists &&
-              data.lists.map((list: ListType) => {
+            {filterLists(data.lists, props.boardId) &&
+              filterLists(data.lists, props.boardId).map((list: ListType) => {
                 return (
                   <option key={list.id} value={list.id}>
                     {list.name}

@@ -29,6 +29,7 @@ export const AddList: React.FC<Props> = (props) => {
     } catch (err) {
       alert("通信に失敗しました。");
     }
+    setName("");
   };
 
   return (

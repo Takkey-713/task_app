@@ -6,7 +6,7 @@ import { ListRequest } from "../../../requests/ListRequest";
 import { TaskRequest } from "../../../requests/TaskRequest";
 import { DataContext } from "../../../../App";
 import { ListModal } from "../../../../components/pages/modal/ListModal";
-// リストモーダルへ名前を変更する0
+
 interface Props {
   list: ListType;
   tasks?: TaskType[];
@@ -50,6 +50,7 @@ export const List: React.FC<Props> = (props) => {
       alert("通信に失敗しました。");
     }
     scrollToBottomOfList();
+    setTaskName("");
   };
 
   const onKeySubmit = async (e: React.KeyboardEvent) => {

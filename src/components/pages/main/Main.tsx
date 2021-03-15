@@ -1,50 +1,64 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { DataContext } from "../../../App";
+import { Redirect, useHistory } from "react-router-dom";
 import { RouteComponentProps } from "react-router-dom";
 import { List } from "./list/List";
-import { TaskType, ListType } from "../../interfaces/interface";
 import styles from "./Main.module.css";
 import { AddList } from "../main/addList/AddList";
+import { TaskRequest } from "../../requests/TaskRequest";
+import { ListRequest } from "../../requests/ListRequest";
+import { filterLists, filterTasks } from "../../functions/DataFilter";
+import { guardRender } from "../../../components/functions/Guard";
 
 type BoardProps = RouteComponentProps<{
   id: string;
 }>;
-interface ListsType {
-  lists: ListType[];
-}
-
-interface TasksType {
-  tasks: TaskType[];
-}
 
 export const Main: React.FC<BoardProps> = (props) => {
   const { data, dispatch } = useContext(DataContext);
-  const id = Number(props.match.params.id);
+  const boardId = Number(props.match.params.id);
+  const history = useHistory();
 
-  const filterLists = data.lists.filter((list) => {
-    return list.board_id === id;
-  });
+  useEffect(() => {
+    fetchData();
+  }, []);
 
-  const boardTasks = data.tasks.filter((task) => {
-    return task.board_id === id;
-  });
+  const fetchData = async () => {
+    const lists = await ListRequest("fetchLists");
+    const tasks = await TaskRequest("fetchTasks");
+    dispatch({ type: "listsUpdate", payload: { list: lists } });
+    dispatch({ type: "tasksUpdate", payload: { task: tasks } });
+  };
 
   return (
-    <div className={styles.main}>
-      {filterLists &&
-        filterLists.map((ele) => {
-          const filterTasks = boardTasks.filter((task) => {
-            return task.list_id === ele.id;
-          });
-          return (
-            <div key={ele.id} className={styles.list_lists}>
-              <List tasks={filterTasks} list={ele} key={ele.id} boardId={id} />
-            </div>
-          );
-        })}
-      <div className={styles.list_lists}>
-        <AddList boardId={id} />
-      </div>
-    </div>
+    <>
+      {guardRender(data.boards, boardId) ? (
+        <div className={styles.main}>
+          {data.lists &&
+            filterLists(data.lists, boardId).map((ele) => {
+              const filteredTasks = filterTasks(data.tasks, boardId).filter(
+                (task) => {
+                  return task.list_id === ele.id;
+                }
+              );
+              return (
+                <div key={ele.id} className={styles.list_lists}>
+                  <List
+                    tasks={filteredTasks}
+                    list={ele}
+                    key={ele.id}
+                    boardId={boardId}
+                  />
+                </div>
+              );
+            })}
+          <div className={styles.list_lists}>
+            <AddList boardId={boardId} />
+          </div>
+        </div>
+      ) : (
+        <Redirect to={history.location.pathname} />
+      )}
+    </>
   );
 };
