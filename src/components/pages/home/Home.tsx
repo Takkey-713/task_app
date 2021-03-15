@@ -12,7 +12,6 @@ interface Props {
 }
 
 export const Home: React.FC<Props> = (props) => {
-  const pathName = `${url.production}/main/:id`;
   return (
     <div className="main">
       <Header
@@ -21,11 +20,7 @@ export const Home: React.FC<Props> = (props) => {
       />
       <Switch>
         <Route exact path="/" component={Board} />
-        {process.env.NODE_ENV === "production" ? (
-          <Route exact path={pathName} component={Main} />
-        ) : (
-          <Route exact path="/main/:id" component={Main} />
-        )}
+        <Route exact path="/main/:id" component={Main} />
       </Switch>
     </div>
   );
