@@ -1,21 +1,22 @@
 import React, { useState, useContext, useRef } from "react";
-import { BoardType, TaskType } from "../../../interfaces/interface";
-import styles from "./Board.module.css";
+import { BoardType, TaskType, ListType } from "../../../interfaces/interface";
+import styles from "./List.module.css";
 import { Task } from "../task/Task";
-import { BoardRequest } from "../../../requests/BoardRequest";
+import { ListRequest } from "../../../requests/ListRequest";
 import { TaskRequest } from "../../../requests/TaskRequest";
 import { DataContext } from "../../../../App";
-import { BoardModal } from "../../../../components/pages/modal/BoardModal";
+import { ListModal } from "../../../../components/pages/modal/ListModal";
 
 interface Props {
-  board: BoardType;
+  list: ListType;
   tasks?: TaskType[];
+  boardId: number;
 }
 
-export const Board: React.FC<Props> = (props) => {
-  const [boardOpen, setBoardOpen] = useState(true);
+export const List: React.FC<Props> = (props) => {
+  const [listOpen, setListOpen] = useState(true);
   const [taskAddIsOpen, setTaskAddIsOpen] = useState<boolean>(false);
-  const [boardName, setBoardName] = useState(props.board.name);
+  const [listName, setListName] = useState(props.list.name);
   const [taskName, setTaskName] = useState("");
   const [isOpen, setIsOpen] = useState(false);
 
@@ -35,7 +36,8 @@ export const Board: React.FC<Props> = (props) => {
   const onClickSubmit = async () => {
     const requestTaskData: TaskType = {
       name: taskName,
-      board_id: props.board.id,
+      list_id: props.list.id,
+      board_id: Number(props.boardId),
     };
 
     try {
@@ -48,21 +50,23 @@ export const Board: React.FC<Props> = (props) => {
       alert("通信に失敗しました。");
     }
     scrollToBottomOfList();
+    setTaskName("");
   };
 
   const onKeySubmit = async (e: React.KeyboardEvent) => {
-    const requestBoardData: BoardType = {
-      id: props.board.id,
-      name: boardName,
+    const requestListData: ListType = {
+      id: props.list.id,
+      name: listName,
+      board_id: Number(props.boardId),
     };
 
     if (e.key === "Enter") {
       try {
-        const boards: BoardType[] = await BoardRequest("updateBoards", {
-          data: requestBoardData,
+        const lists: ListType[] = await ListRequest("updateLists", {
+          data: requestListData,
         });
-        dispatch({ type: "boardsUpdate", payload: { board: boards } });
-        setBoardOpen(!boardOpen);
+        dispatch({ type: "listsUpdate", payload: { list: lists } });
+        setListOpen(!listOpen);
       } catch (err) {
         alert("通信に失敗しました。");
       }
@@ -71,13 +75,13 @@ export const Board: React.FC<Props> = (props) => {
     }
   };
 
-  const handleOnBoardModalClose = () => {
+  const handleOnListModalClose = () => {
     setIsOpen(!isOpen);
   };
 
-  const handleOnBoardOpen = () => {
-    setBoardOpen(!boardOpen);
-    setBoardName(props.board.name);
+  const handleOnListOpen = () => {
+    setListOpen(!listOpen);
+    setListName(props.list.name);
   };
 
   const clickOnTaskAdd = () => {
@@ -86,39 +90,41 @@ export const Board: React.FC<Props> = (props) => {
 
   return (
     <div className={styles.contents}>
-      {boardOpen ? (
-        <div className={styles.board_name}>
+      {listOpen ? (
+        <div className={styles.list_name}>
           <div
-            onClick={() => handleOnBoardOpen()}
-            className={styles.board_name_title}
+            onClick={() => handleOnListOpen()}
+            className={styles.list_name_title}
           >
-            {props.board.name}
+            {props.list.name}
           </div>
-          <div className={styles.board_icon} onClick={() => setIsOpen(!isOpen)}>
+          <div className={styles.list_icon} onClick={() => setIsOpen(!isOpen)}>
             :
           </div>
 
-          <BoardModal
+          <ListModal
             isOpen={isOpen}
-            board={props.board}
-            handleOnBoardModalClose={handleOnBoardModalClose}
+            list={props.list}
+            handleOnListModalClose={handleOnListModalClose}
             tasks={props.tasks}
+            boardId={props.boardId}
           />
+          {/* リストモーダルへ名前を変更する */}
         </div>
       ) : (
-        <div className={styles.board_name}>
+        <div className={styles.list_name}>
           <textarea
-            className={styles.board_textarea}
-            placeholder={props.board.name}
+            className={styles.list_textarea}
+            placeholder={props.list.name}
             onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => {
-              setBoardName(e.target.value);
+              setListName(e.target.value);
             }}
             onKeyPress={(e: React.KeyboardEvent) => onKeySubmit(e)}
           />
 
           <div
-            className={styles.board_cancel_btn}
-            onClick={() => setBoardOpen(!boardOpen)}
+            className={styles.list_cancel_btn}
+            onClick={() => setListOpen(!listOpen)}
           >
             ×
           </div>
@@ -129,7 +135,7 @@ export const Board: React.FC<Props> = (props) => {
           props.tasks.map((task: TaskType) => {
             return (
               <div key={task.id}>
-                <Task task={task} board={props.board} />
+                <Task task={task} list={props.list} boardId={props.boardId} />
                 <div className="scroll_ref" ref={ref}></div>
               </div>
             );

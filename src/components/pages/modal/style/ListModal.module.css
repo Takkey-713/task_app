@@ -17,7 +17,7 @@
   }
 }
 
-.board_title {
+.list_title {
   font-size: 20px;
 }
 
@@ -70,7 +70,7 @@
   top: 3px;
 }
 
-.board_delete_btn {
+.list_delete_btn {
   color: white;
   margin-top: 30px;
   border-radius: 10px;
@@ -83,7 +83,7 @@
   padding: 8px 8px;
 }
 
-.board_delete_btn:active {
+.list_delete_btn:active {
   box-shadow: none;
   position: relative;
   top: 3px;

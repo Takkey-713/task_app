@@ -1,14 +1,15 @@
 import { useReducer } from "react";
-import { TaskType, BoardType } from "../interfaces/interface";
+import { TaskType, BoardType, ListType } from "../interfaces/interface";
 
 export type Data = {
   tasks: TaskType[];
   boards: BoardType[];
+  lists: ListType[];
 };
 
 export type dataAction = {
-  type: "tasksUpdate" | "boardsUpdate";
-  payload: { task?: TaskType[]; board?: BoardType[] };
+  type: "tasksUpdate" | "listsUpdate" | "boardsUpdate";
+  payload: { task?: TaskType[]; list?: ListType[]; board?: BoardType[] };
 };
 
 export const useDataReducer = (): [
@@ -22,9 +23,11 @@ export const useDataReducer = (): [
         name: "",
         explanation: "",
         deadline_date: "",
+        list_id: 0,
         board_id: 0,
       },
     ],
+    lists: [{ id: 0, name: "", board_id: 0 }],
     boards: [{ id: 0, name: "" }],
   };
 
@@ -32,6 +35,8 @@ export const useDataReducer = (): [
     switch (action.type) {
       case "tasksUpdate":
         return { ...state, tasks: action.payload.task || state.tasks };
+      case "listsUpdate":
+        return { ...state, lists: action.payload.list || state.lists };
       case "boardsUpdate":
         return { ...state, boards: action.payload.board || state.boards };
     }

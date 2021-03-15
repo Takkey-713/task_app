@@ -1,7 +1,12 @@
 import axios from "axios";
 import { BoardType } from "../interfaces/interface";
 import { url } from "../common";
-type action = "fetchBoards" | "createBoards" | "updateBoards" | "deleteBoards";
+type action =
+  | "fetchBoards"
+  | "createBoards"
+  | "updateBoards"
+  | "deleteBoards"
+  | "selectBoard";
 type parameter = { data: BoardType };
 
 const option = axios.create({
@@ -32,6 +37,9 @@ export const BoardRequest: (action: action, data?: parameter) => any = async (
       case "deleteBoards":
         const deleteTasks = await option.delete(`/${parameter.data.id}`);
         return deleteTasks.data;
+      case "selectBoard":
+        const selectBoard = await option.get(`${parameter.data.id}`);
+        return selectBoard;
       default:
         return null;
     }

@@ -1,7 +1,7 @@
 import React from "react";
 import Modal from "react-modal";
 import { TaskBody } from "./TaskBody";
-import { BoardType, TaskType } from "../../interfaces/interface";
+import { BoardType, TaskType, ListType } from "../../interfaces/interface";
 import { useMediaQuery } from "../../hooks/useMediaQuery";
 
 const forPcStyles = {
@@ -36,7 +36,8 @@ interface Props {
   handleClose: () => void;
   isOpen: boolean;
   task?: TaskType;
-  board: BoardType;
+  list: ListType;
+  boardId: number;
 }
 
 export const FormModal = (props: Props) => {
@@ -55,10 +56,15 @@ export const FormModal = (props: Props) => {
             <TaskBody
               task={props.task}
               handleOnClose={props.handleClose}
-              board={props.board}
+              list={props.list}
+              boardId={props.boardId}
             />
           ) : (
-            <TaskBody handleOnClose={props.handleClose} board={props.board} />
+            <TaskBody
+              handleOnClose={props.handleClose}
+              list={props.list}
+              boardId={props.boardId}
+            />
           )}
         </Modal>
       )}
@@ -73,10 +79,15 @@ export const FormModal = (props: Props) => {
             <TaskBody
               task={props.task}
               handleOnClose={props.handleClose}
-              board={props.board}
+              list={props.list}
+              boardId={props.boardId}
             />
           ) : (
-            <TaskBody handleOnClose={props.handleClose} board={props.board} />
+            <TaskBody
+              handleOnClose={props.handleClose}
+              list={props.list}
+              boardId={props.boardId}
+            />
           )}
         </Modal>
       )}

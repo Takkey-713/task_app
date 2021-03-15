@@ -7,7 +7,7 @@
   max-width: 272px;
 }
 
-.board_name {
+.list_name {
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -15,17 +15,17 @@
   font-weight: 600;
 }
 
-.board_name :hover {
+.list_name :hover {
   opacity: 0.5;
 }
 
-.board_name_title {
+.list_name_title {
   width: 100%;
   word-break: break-all;
   cursor: pointer;
 }
 
-.board_icon {
+.list_icon {
   cursor: pointer;
   font-size: 16px;
   padding: 0 6px;
@@ -38,7 +38,7 @@
   max-height: 60vh;
   overflow: auto;
 }
-.board_textarea {
+.list_textarea {
   border: none;
   width: 100%;
   border-radius: 5px;
@@ -94,7 +94,7 @@
   cursor: pointer;
 }
 
-.board_cancel_btn {
+.list_cancel_btn {
   cursor: pointer;
   margin-left: 10px;
   font-size: 20px;

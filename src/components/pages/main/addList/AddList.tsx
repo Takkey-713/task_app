@@ -1,49 +1,55 @@
 import React, { useState, useContext } from "react";
 import { DataContext } from "../../../../App";
 import styles from "./AddList.module.css";
-import { BoardRequest } from "../../../requests/BoardRequest";
-import { BoardType } from "../../../interfaces/interface";
+import { ListRequest } from "../../../requests/ListRequest";
+import { BoardType, ListType } from "../../../interfaces/interface";
 
-export const AddList = () => {
-  const [boardDisplay, setBoardDisplay] = useState(true);
+interface Props {
+  boardId: number;
+}
+
+export const AddList: React.FC<Props> = (props) => {
+  const [listDisplay, setListDisplay] = useState(true);
   const [name, setName] = useState("");
   const { data, dispatch } = useContext(DataContext);
 
-  const newData: BoardType = {
+  const newData: ListType = {
     id: 0,
     name: name,
+    board_id: Number(props.boardId),
   };
 
   const onClickSubmit = async () => {
     try {
-      const boards: BoardType[] = await BoardRequest("createBoards", {
+      const lists: ListType[] = await ListRequest("createLists", {
         data: newData,
       });
-      dispatch({ type: "boardsUpdate", payload: { board: boards } });
-      setBoardDisplay(!boardDisplay);
+      dispatch({ type: "listsUpdate", payload: { list: lists } });
+      setListDisplay(!listDisplay);
     } catch (err) {
       alert("通信に失敗しました。");
     }
+    setName("");
   };
 
   return (
     <>
-      {boardDisplay ? (
+      {listDisplay ? (
         <div
-          className={styles.add_board}
-          onClick={() => setBoardDisplay(!boardDisplay)}
+          className={styles.add_list}
+          onClick={() => setListDisplay(!listDisplay)}
         >
           <div>
             <span>+</span> <span>リストを追加する</span>
           </div>
         </div>
       ) : (
-        <div className={styles.add_board_form}>
+        <div className={styles.add_list_form}>
           <textarea
             onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => {
               setName(e.target.value);
             }}
-            className={styles.board_textarea}
+            className={styles.list_textarea}
             placeholder="リストのタイトルを入力..."
           />
           <div className={styles.add_submit_form}>
@@ -55,7 +61,7 @@ export const AddList = () => {
             />
             <div
               className={styles.cancel_icon}
-              onClick={() => setBoardDisplay(!boardDisplay)}
+              onClick={() => setListDisplay(!listDisplay)}
             >
               ×
             </div>

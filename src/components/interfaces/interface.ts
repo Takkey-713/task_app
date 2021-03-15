@@ -4,7 +4,7 @@ export interface Status {
 }
 
 export interface BoardType {
-  id: number;
+  id?: number;
   name: string;
 }
 
@@ -13,10 +13,17 @@ export interface TaskType {
   name: string;
   explanation?: string;
   deadline_date?: string;
+  list_id: number;
   board_id: number;
 }
 
 export interface UserType {
   id?: number;
   email: string;
+}
+
+export interface ListType {
+  id: number;
+  name: string;
+  board_id: number;
 }
