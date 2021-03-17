@@ -7,7 +7,7 @@ import { loginAuthData } from "../interfaces/userAuth";
 import { registAuthData } from "../interfaces/userAuth";
 import { AuthRequest } from "../requests/AuthRequest";
 import { UserType } from "../../components/interfaces/interface";
-import { AuthHeader } from "./AuthHeader";
+import { AuthHeader } from "./authHeader/AuthHeader";
 
 interface Props {
   isLoggedIn: boolean;

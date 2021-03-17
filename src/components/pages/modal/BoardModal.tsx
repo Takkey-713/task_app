@@ -13,7 +13,7 @@ const forPcStyles = {
     top: "44px",
     left: "35vw",
     right: "35vw",
-    height: "15vh",
+    height: "100px",
     width: "30vw",
     padding: "10px",
   },
@@ -24,12 +24,12 @@ const forMobileStyles = {
     backgroundColor: "rgba(0,0,0,.64)",
   },
   content: {
-    top: "5vh",
-    left: "5vw",
-    right: "5vw",
-    height: "90vh",
-    width: "90vw",
-    padding: "0",
+    top: "44px",
+    left: "15vw",
+    right: "15vw",
+    height: "110px",
+    width: "70vw",
+    padding: "10px",
   },
 };
 
@@ -45,16 +45,34 @@ export const BoardModal: React.FC<Props> = (props) => {
 
   return (
     <div>
-      <Modal
-        isOpen={props.isOpen}
-        onRequestClose={props.handleOnBoardModalClose}
-        style={forPcStyles}
-      >
-        <BoardBody
-          isOpen={props.isOpen}
-          handleOnBoardModalClose={props.handleOnBoardModalClose}
-        />
-      </Modal>
+      {mq.isPc && (
+        <div>
+          <Modal
+            isOpen={props.isOpen}
+            onRequestClose={props.handleOnBoardModalClose}
+            style={forPcStyles}
+          >
+            <BoardBody
+              isOpen={props.isOpen}
+              handleOnBoardModalClose={props.handleOnBoardModalClose}
+            />
+          </Modal>
+        </div>
+      )}
+      {mq.isMobile && (
+        <div>
+          <Modal
+            isOpen={props.isOpen}
+            onRequestClose={props.handleOnBoardModalClose}
+            style={forMobileStyles}
+          >
+            <BoardBody
+              isOpen={props.isOpen}
+              handleOnBoardModalClose={props.handleOnBoardModalClose}
+            />
+          </Modal>
+        </div>
+      )}
     </div>
   );
 };

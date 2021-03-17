@@ -1,6 +1,6 @@
 .main {
   width: 100%;
-  height: calc(100% - 58px);
+  height: calc(100% - 60px);
   display: flex;
   overflow-x: auto;
   padding-top: 60px;

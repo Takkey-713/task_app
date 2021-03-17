@@ -1,4 +1,4 @@
-import styles from "./style/AuthHeader.module.css";
+import styles from "../style/AuthHeader.module.css";
 
 export const AuthHeader = () => {
   return (

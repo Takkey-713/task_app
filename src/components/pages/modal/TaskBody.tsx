@@ -84,7 +84,7 @@ export const TaskBody: React.FC<Props> = (props) => {
         className={styles.task_close_icon}
         onClick={() => props.handleOnClose()}
       />
-      <div>
+      <div className={styles.contents}>
         <h4 className={styles.input_title}>タイトル</h4>
         <textarea
           className={styles.textArea}
@@ -152,22 +152,24 @@ export const TaskBody: React.FC<Props> = (props) => {
         )}
       </div>
 
-      <input
-        className={styles.input_submit}
-        type="button"
-        value={props.task ? "タスクを更新する" : "タスクを追加する"}
-        onClick={() => onClickSubmit()}
-      />
-
-      {props.task && (
-        <button
-          className={styles.delete_button}
+      <div className={styles.input_btn}>
+        <input
+          className={styles.input_submit}
           type="button"
-          onClick={handleOnDelete}
-        >
-          タスクを削除する
-        </button>
-      )}
+          value={props.task ? "タスクを更新" : "タスクを追加"}
+          onClick={() => onClickSubmit()}
+        />
+
+        {props.task && (
+          <button
+            className={styles.delete_button}
+            type="button"
+            onClick={handleOnDelete}
+          >
+            タスクを削除
+          </button>
+        )}
+      </div>
     </form>
   );
 };

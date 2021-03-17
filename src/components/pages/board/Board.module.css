@@ -1,9 +1,174 @@
-.board_main {
-  padding-top: 60px;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  height: calc(100vh - 73px);
+@media screen and (max-width: 576px) {
+  .board_main {
+    padding-top: 60px;
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - 80px);
+    width: calc(100vw - 5px);
+    margin-left: 5px;
+  }
+
+  .all_boards {
+    overflow-y: auto;
+    height: 80%;
+  }
+
+  .board_list {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .board_link {
+    border-radius: 5px;
+    padding: 0 8px;
+    width: 25%;
+    height: 100px;
+    background-color: rgba(0, 0, 0, 0.1);
+    margin: 2%;
+    font-size: 12px;
+    text-decoration: none;
+    color: rgb(70, 70, 70);
+    word-break: break-all;
+  }
+  .new_board {
+    border-radius: 5px;
+    padding: 0 8px;
+    width: 58%;
+    height: 100px;
+    background-color: rgba(0, 0, 0, 0.1);
+    margin: 2%;
+    font-size: 12px;
+    text-decoration: none;
+    color: rgb(70, 70, 70);
+    word-break: break-all;
+    line-height: 100px;
+    text-align: center;
+  }
+}
+
+@media screen and (max-width: 360px) {
+  .board_main {
+    padding-top: 60px;
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - 80px);
+    width: calc(100vw - 6px);
+    margin-left: 6px;
+  }
+
+  .all_boards {
+    overflow-y: auto;
+    height: 80%;
+  }
+
+  .board_list {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .board_link {
+    border-radius: 5px;
+    padding: 0 8px;
+    width: 24%;
+    height: 100px;
+    background-color: rgba(0, 0, 0, 0.1);
+    margin: 2%;
+    font-size: 12px;
+    text-decoration: none;
+    color: rgb(70, 70, 70);
+    word-break: break-all;
+  }
+  .new_board {
+    border-radius: 5px;
+    padding: 0 8px;
+    width: 58%;
+    height: 100px;
+    background-color: rgba(0, 0, 0, 0.1);
+    margin: 2%;
+    font-size: 12px;
+    text-decoration: none;
+    color: rgb(70, 70, 70);
+    word-break: break-all;
+    line-height: 100px;
+    text-align: center;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .board_main {
+    padding-top: 60px;
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - 80px);
+    width: calc(100vw - 3px);
+    margin-left: 3px;
+  }
+
+  .all_boards {
+    overflow-y: auto;
+    height: 80%;
+  }
+
+  .board_list {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .board_link {
+    border-radius: 5px;
+    padding: 0 8px;
+    width: 24%;
+    height: 100px;
+    background-color: rgba(0, 0, 0, 0.1);
+    margin: 2%;
+    font-size: 12px;
+    text-decoration: none;
+    color: rgb(70, 70, 70);
+    word-break: break-all;
+  }
+  .new_board {
+    border-radius: 5px;
+    padding: 0 8px;
+    width: 58%;
+    height: 100px;
+    background-color: rgba(0, 0, 0, 0.1);
+    margin: 2%;
+    font-size: 12px;
+    text-decoration: none;
+    color: rgb(70, 70, 70);
+    word-break: break-all;
+    line-height: 100px;
+    text-align: center;
+  }
+}
+@media screen and (min-width: 575px) {
+  .board_main {
+    padding-top: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    color: rgb(70, 70, 70);
+    height: calc(100vh - 80px);
+  }
+  .all_boards {
+    min-width: 50%;
+    height: 100%;
+    overflow-y: auto;
+    margin: 20px 0 0 20px;
+  }
+  .board_list {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .board_link {
+    border-radius: 5px;
+    padding: 0 8px;
+    width: 15%;
+    height: 100px;
+    background-color: rgba(0, 0, 0, 0.1);
+    margin: 0 2% 2% 0;
+    font-size: 12px;
+    text-decoration: none;
+    color: rgb(70, 70, 70);
+    word-break: break-all;
+  }
 }
 
 .new_options {
@@ -36,30 +201,4 @@
 .new_options p {
   font-size: 12px;
   color: #5e6c84;
-}
-
-.all_boards {
-  min-width: 50%;
-  height: 100%;
-  overflow-y: auto;
-  margin: 20px 0 0 20px;
-}
-
-.board_list {
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.board_link {
-  border-radius: 5px;
-  padding: 0 8px;
-  width: 15%;
-  height: 100px;
-  background-color: rgba(0, 0, 0, 0.1);
-  margin: 0 2% 2% 0;
-  display: flex;
-  font-size: 20px;
-  text-decoration: none;
-  color: #ffff;
-  word-break: break-all;
 }

@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import Modal from "react-modal";
-import { BoardType, TaskType, ListType } from "../../interfaces/interface";
+import { TaskType, ListType } from "../../interfaces/interface";
 import { ListRequest } from "../../requests/ListRequest";
 import { TaskRequest } from "../../requests/TaskRequest";
 import { DataContext } from "../../../App";
@@ -16,10 +16,10 @@ const forPcStyles = {
   },
   content: {
     top: "10vh",
-    left: "30vw",
-    right: "30vw",
+    left: "35vw",
+    right: "35vw",
     height: "80vh",
-    width: "40vw",
+    width: "30vw",
     padding: "10px",
   },
 };
@@ -29,10 +29,10 @@ const forMobileStyles = {
     backgroundColor: "rgba(0,0,0,.64)",
   },
   content: {
-    top: "5vh",
+    top: "10vh",
     left: "5vw",
     right: "5vw",
-    height: "90vh",
+    height: "80vh",
     width: "90vw",
     padding: "0",
   },
@@ -51,10 +51,10 @@ Modal.setAppElement("#root");
 
 export const ListModal: React.FC<Props> = (props) => {
   const { data, dispatch } = useContext(DataContext);
-  const [isTaskOpen, setIsTaskOpen] = useState(false);
-  // 既存のタスクをモーダルで表示するためのstate
-  const [isShown, setIsShown] = useState(false);
-  // 新規タスクを追加するためのモーダルを表示するためのstate
+  const [isTaskOpen, setIsTaskOpen] = useState<boolean>(false);
+  const [isShown, setIsShown] = useState<boolean>(false);
+  const [isListOpen, setIsListOpen] = useState<boolean>(false);
+  const [listName, setListName] = useState<string>(props.list.name);
   const mq = useMediaQuery();
 
   const handleOnDeleteList = async () => {
@@ -100,6 +100,28 @@ export const ListModal: React.FC<Props> = (props) => {
     setIsShown(!isShown);
   };
 
+  const onKeySubmit = async (e: React.KeyboardEvent) => {
+    const requestListData: ListType = {
+      id: props.list.id,
+      name: listName,
+      board_id: Number(props.boardId),
+    };
+
+    if (e.key === "Enter") {
+      try {
+        const lists: ListType[] = await ListRequest("updateLists", {
+          data: requestListData,
+        });
+        dispatch({ type: "listsUpdate", payload: { list: lists } });
+        setIsListOpen(!isListOpen);
+      } catch (err) {
+        alert("通信に失敗しました。");
+      }
+    } else {
+      return false;
+    }
+  };
+
   return (
     <div>
       {mq.isPc && (
@@ -114,7 +136,32 @@ export const ListModal: React.FC<Props> = (props) => {
               className={styles.task_close_icon}
               onClick={() => props.handleOnListModalClose()}
             />
-            <div className={styles.list_title}>{props.list.name}</div>
+            {isListOpen ? (
+              <div className={styles.list_form}>
+                <textarea
+                  className={styles.list_textarea}
+                  placeholder={props.list.name}
+                  onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => {
+                    setListName(e.target.value);
+                  }}
+                  onKeyPress={(e: React.KeyboardEvent) => onKeySubmit(e)}
+                />
+                <div
+                  className={styles.list_cancel_btn}
+                  onClick={() => setIsListOpen(!isListOpen)}
+                >
+                  ×
+                </div>
+              </div>
+            ) : (
+              <div
+                className={styles.list_title}
+                onClick={() => setIsListOpen(!isListOpen)}
+              >
+                {props.list.name}
+              </div>
+            )}
+
             <div className={styles.task_lists}>
               {props.tasks &&
                 props.tasks.map((task) => {
@@ -151,7 +198,7 @@ export const ListModal: React.FC<Props> = (props) => {
                 className={styles.add_task_btn}
                 onClick={() => setIsShown(!isShown)}
               >
-                タスクを追加する
+                タスクを追加
               </button>
               <FormModal
                 isOpen={isShown}
@@ -164,7 +211,7 @@ export const ListModal: React.FC<Props> = (props) => {
                 type="button"
                 onClick={handleOnDeleteList}
               >
-                リストを削除する
+                リストを削除
               </button>
             </div>
           </div>
@@ -183,7 +230,32 @@ export const ListModal: React.FC<Props> = (props) => {
               className={styles.task_close_icon}
               onClick={() => props.handleOnListModalClose()}
             />
-            <div className={styles.list_title}>{props.list.name}</div>
+            {isListOpen ? (
+              <div className={styles.list_form}>
+                <textarea
+                  className={styles.list_textarea}
+                  placeholder={props.list.name}
+                  onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => {
+                    setListName(e.target.value);
+                  }}
+                  onKeyPress={(e: React.KeyboardEvent) => onKeySubmit(e)}
+                />
+                <div
+                  className={styles.list_cancel_btn}
+                  onClick={() => setIsListOpen(!isListOpen)}
+                >
+                  ×
+                </div>
+              </div>
+            ) : (
+              <div
+                className={styles.list_title}
+                onClick={() => setIsListOpen(!isListOpen)}
+              >
+                {props.list.name}
+              </div>
+            )}
+
             <div className={styles.task_lists}>
               {props.tasks &&
                 props.tasks.map((task) => {
@@ -220,7 +292,7 @@ export const ListModal: React.FC<Props> = (props) => {
                 className={styles.add_task_btn}
                 onClick={() => setIsShown(!isShown)}
               >
-                タスクを追加する
+                タスクを追加
               </button>
               <FormModal
                 isOpen={isShown}
@@ -233,7 +305,7 @@ export const ListModal: React.FC<Props> = (props) => {
                 type="button"
                 onClick={handleOnDeleteList}
               >
-                リストを削除する
+                リストを削除
               </button>
             </div>
           </div>
