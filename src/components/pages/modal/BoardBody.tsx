@@ -11,7 +11,7 @@ interface Props {
 }
 
 export const BoardBody: React.FC<Props> = (props) => {
-  const { data, dispatch } = useContext(DataContext);
+  const { dispatch } = useContext(DataContext);
   const [boardName, setBoardName] = useState<string>("");
 
   const onClickCloseIcon = () => {
@@ -46,7 +46,7 @@ export const BoardBody: React.FC<Props> = (props) => {
         <CloseIcon
           style={{
             cursor: "pointer",
-            fontSize: "14px",
+            fontSize: "20px",
             marginLeft: "5px",
           }}
           onClick={() => onClickCloseIcon()}

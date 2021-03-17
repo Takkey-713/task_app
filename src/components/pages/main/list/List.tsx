@@ -30,7 +30,6 @@ export const List: React.FC<Props> = (props) => {
         block: "end",
       });
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [ref]);
 
   const onClickSubmit = async () => {
@@ -109,7 +108,6 @@ export const List: React.FC<Props> = (props) => {
             tasks={props.tasks}
             boardId={props.boardId}
           />
-          {/* リストモーダルへ名前を変更する */}
         </div>
       ) : (
         <div className={styles.list_name}>

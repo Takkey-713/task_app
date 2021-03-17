@@ -24,9 +24,16 @@
 .header_title {
   font-family: Impact;
   font-weight: bold;
+  font-size: 20px;
   color: rgb(70, 70, 70);
   height: 16px;
   margin-left: 5px;
+  text-decoration: none;
+  transition: 0.5s;
+}
+
+.header_title:hover {
+  transform: scale(1.2);
 }
 
 .header_list {

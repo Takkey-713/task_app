@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./Header.module.css";
-import DoneOutlineIcon from "@material-ui/icons/DoneOutline";
+import { Link } from "react-router-dom";
 import { SearchForm } from "../search/SearchForm";
 
 interface Props {
@@ -15,7 +15,9 @@ export const Header: React.FC<Props> = (props) => {
       </div>
 
       <div className={styles.header_title_list}>
-        <div className={styles.header_title}>Task App</div>
+        <Link to="/" className={styles.header_title}>
+          Task App
+        </Link>
       </div>
 
       <div className={styles.header_list}>
