@@ -150,25 +150,25 @@ export const TaskBody: React.FC<Props> = (props) => {
             <option value={props.list.id}>{props.list.name}</option>
           </select>
         )}
-      </div>
 
-      <div className={styles.input_btn}>
-        <input
-          className={styles.input_submit}
-          type="button"
-          value={props.task ? "タスクを更新" : "タスクを追加"}
-          onClick={() => onClickSubmit()}
-        />
-
-        {props.task && (
-          <button
-            className={styles.delete_button}
+        <div className={styles.input_btn}>
+          <input
+            className={styles.input_submit}
             type="button"
-            onClick={handleOnDelete}
-          >
-            タスクを削除
-          </button>
-        )}
+            value={props.task ? "タスクを更新" : "タスクを追加"}
+            onClick={() => onClickSubmit()}
+          />
+
+          {props.task && (
+            <button
+              className={styles.delete_button}
+              type="button"
+              onClick={handleOnDelete}
+            >
+              タスクを削除
+            </button>
+          )}
+        </div>
       </div>
     </form>
   );

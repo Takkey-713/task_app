@@ -1,0 +1,106 @@
+@media screen and (max-width: 575px) {
+  .contents {
+    display: flex;
+    justify-content: space-between;
+    height: 40px;
+    width: 100%;
+  }
+
+  .board_name {
+    width: 172px;
+    display: flex;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 40px;
+  }
+
+  .board_name :hover {
+    opacity: 0.5;
+  }
+
+  .board_name_title {
+    width: 172px;
+    word-break: break-all;
+    cursor: pointer;
+  }
+
+  .board_textarea {
+    border-radius: 5px;
+    height: 40px;
+    line-height: 40px;
+    font-size: 20px;
+    font-weight: 600;
+    resize: none;
+    padding: 0;
+  }
+
+  .board_cancel_btn {
+    line-height: 40px;
+    font-size: 30px;
+    margin-left: 5px;
+    cursor: pointer;
+  }
+
+  .boardMenu {
+    width: 272px;
+    background-color: rgba(0, 0, 0, 0.08);
+    border-radius: 5px;
+    text-align: center;
+    line-height: 40px;
+    font-weight: 400;
+    cursor: pointer;
+  }
+}
+
+@media screen and (min-width: 576px) {
+  .contents {
+    display: flex;
+    justify-content: space-between;
+    height: 40px;
+    width: 100%;
+  }
+
+  .board_name {
+    width: 272px;
+    display: flex;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 40px;
+  }
+
+  .board_name :hover {
+    opacity: 0.5;
+  }
+
+  .board_name_title {
+    width: 272px;
+    word-break: break-all;
+    cursor: pointer;
+  }
+
+  .board_textarea {
+    border-radius: 5px;
+    height: 38px;
+    line-height: 38px;
+    font-size: 20px;
+    font-weight: 600;
+    resize: none;
+    padding: 0;
+  }
+
+  .board_cancel_btn {
+    font-size: 30px;
+    margin-left: 5px;
+    cursor: pointer;
+  }
+
+  .boardMenu {
+    width: 272px;
+    background-color: rgba(0, 0, 0, 0.08);
+    border-radius: 5px;
+    text-align: center;
+    line-height: 40px;
+    font-weight: 400;
+    cursor: pointer;
+  }
+}

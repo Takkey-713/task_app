@@ -50,7 +50,7 @@ interface Props {
 Modal.setAppElement("#root");
 
 export const ListModal: React.FC<Props> = (props) => {
-  const { data, dispatch } = useContext(DataContext);
+  const { dispatch } = useContext(DataContext);
   const [isTaskOpen, setIsTaskOpen] = useState<boolean>(false);
   const [isShown, setIsShown] = useState<boolean>(false);
   const [isListOpen, setIsListOpen] = useState<boolean>(false);

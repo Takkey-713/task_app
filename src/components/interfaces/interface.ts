@@ -8,6 +8,10 @@ export interface BoardType {
   name: string;
 }
 
+export interface SelectBoardType {
+  id: number;
+}
+
 export interface TaskType {
   id?: number;
   name: string;

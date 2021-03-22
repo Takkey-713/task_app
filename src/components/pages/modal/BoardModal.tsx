@@ -25,10 +25,10 @@ const forMobileStyles = {
   },
   content: {
     top: "44px",
-    left: "15vw",
-    right: "15vw",
+    left: "7vw",
+    right: "7vw",
     height: "110px",
-    width: "70vw",
+    width: "80vw",
     padding: "10px",
   },
 };

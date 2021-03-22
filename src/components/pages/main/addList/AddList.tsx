@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react";
 import { DataContext } from "../../../../App";
 import styles from "./AddList.module.css";
 import { ListRequest } from "../../../requests/ListRequest";
-import { BoardType, ListType } from "../../../interfaces/interface";
+import { ListType } from "../../../interfaces/interface";
 
 interface Props {
   boardId: number;
