@@ -1,5 +1,5 @@
 import React, { useState, useContext, useRef } from "react";
-import { BoardType, TaskType, ListType } from "../../../interfaces/interface";
+import { TaskType, ListType } from "../../../interfaces/interface";
 import styles from "./List.module.css";
 import { Task } from "../task/Task";
 import { ListRequest } from "../../../requests/ListRequest";

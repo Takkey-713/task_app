@@ -1,10 +1,10 @@
 import React from "react";
 import Modal from "react-modal";
 import { TaskBody } from "./TaskBody";
-import { BoardType, TaskType, ListType } from "../../interfaces/interface";
+import { TaskType, ListType } from "../../interfaces/interface";
 import { useMediaQuery } from "../../hooks/useMediaQuery";
 
-const forPcStyles = {
+const PcStyles = {
   overlay: {
     backgroundColor: "rgba(0,0,0,.64)",
   },
@@ -12,13 +12,13 @@ const forPcStyles = {
     top: "20vh",
     left: "35vw",
     right: "35vw",
-    height: "60vh",
+    height: "63vh",
     width: "30vw",
     padding: "10px",
   },
 };
 
-const forMobileStyles = {
+const MobileStyles = {
   overlay: {
     backgroundColor: "rgba(0,0,0,.64)",
   },
@@ -26,7 +26,7 @@ const forMobileStyles = {
     top: "10vh",
     left: "5vw",
     right: "5vw",
-    height: "80vh",
+    height: "82vh",
     width: "90vw",
     padding: "0",
   },
@@ -50,7 +50,7 @@ export const FormModal = (props: Props) => {
         <Modal
           isOpen={props.isOpen}
           onRequestClose={props.handleClose}
-          style={forPcStyles}
+          style={PcStyles}
         >
           {props.task ? (
             <TaskBody
@@ -73,7 +73,7 @@ export const FormModal = (props: Props) => {
         <Modal
           isOpen={props.isOpen}
           onRequestClose={props.handleClose}
-          style={forMobileStyles}
+          style={MobileStyles}
         >
           {props.task ? (
             <TaskBody

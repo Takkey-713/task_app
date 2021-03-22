@@ -1,0 +1,36 @@
+.Contents {
+  width: 272px;
+}
+
+.deleteHeader {
+  display: flex;
+  justify-content: center;
+  height: 40px;
+  position: relative;
+  margin-bottom: 8px;
+  text-align: center;
+  border-bottom: 1px solid rgba(9, 30, 66, 0.13);
+  line-height: 40px;
+  color: #5e6c84;
+}
+
+.closeIcon {
+  margin: 8px 0px 0px 8px;
+  cursor: pointer;
+}
+
+.input_delete {
+  width: 100%;
+  color: white;
+  cursor: pointer;
+  font-size: 15px;
+  background-color: rgb(196, 82, 53);
+  border-style: none;
+  padding: 6px 12px;
+  margin-top: 10px;
+  font-weight: 600;
+}
+
+.input_delete:hover {
+  opacity: 0.8;
+}

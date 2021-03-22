@@ -23,7 +23,7 @@ export const BoardBody: React.FC<Props> = (props) => {
       name: boardName,
     };
     try {
-      const boards: BoardType[] = await BoardRequest("createBoards", {
+      const boards: BoardType[] = await BoardRequest("createBoard", {
         data: requestData,
       });
       props.handleOnBoardModalClose();
