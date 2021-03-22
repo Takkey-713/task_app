@@ -4,6 +4,7 @@ import { BoardRequest } from "../../../requests/BoardRequest";
 import styles from "./BoardHeader.module.css";
 import { DeleteBoardModal } from "../../modal/DeleteBoardModal";
 import { useMediaQuery } from "../../../hooks/useMediaQuery";
+import AssignmentIcon from "@material-ui/icons/Assignment";
 
 interface Props {
   boardId: number;
@@ -141,10 +142,13 @@ export const BoardHeader: React.FC<Props> = (props) => {
               </div>
             </div>
           )}
-          <div
-            className={styles.boardMenu}
+
+          <AssignmentIcon
+            className={styles.boardMenuIcon}
             onClick={() => setIsOpen(!isOpen)}
-          ></div>
+            style={{ fontSize: "30px" }}
+          />
+
           <DeleteBoardModal
             boardId={props.boardId}
             isOpen={isOpen}
