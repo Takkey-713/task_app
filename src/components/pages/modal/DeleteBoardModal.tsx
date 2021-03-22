@@ -13,16 +13,30 @@ interface Props {
   onClickOpen: () => void;
 }
 
-const Style = {
+const pcStyles = {
   overlay: {
     backgroundColor: "transparent",
   },
   content: {
     top: "44px",
-    left: "30vw",
-    right: "30vw",
+    left: "35vw",
+    right: "35vw",
     height: "100px",
-    width: "272px",
+    width: "30vw",
+    padding: "10px",
+  },
+};
+
+const mobileStyles = {
+  overlay: {
+    backgroundColor: "transparent",
+  },
+  content: {
+    top: "44px",
+    left: "7vw",
+    right: "7vw",
+    height: "100px",
+    width: "80vw",
     padding: "10px",
   },
 };
@@ -49,7 +63,7 @@ export const DeleteBoardModal: React.FC<Props> = (props) => {
         <Modal
           isOpen={props.isOpen}
           onRequestClose={props.onClickOpen}
-          style={Style}
+          style={pcStyles}
         >
           <div className={styles.isShown}>
             <div className={styles.contents}>
@@ -78,7 +92,7 @@ export const DeleteBoardModal: React.FC<Props> = (props) => {
         <Modal
           isOpen={props.isOpen}
           onRequestClose={props.onClickOpen}
-          style={Style}
+          style={mobileStyles}
         >
           <div className={styles.isShown}>
             <div className={styles.contents}>
