@@ -27,20 +27,24 @@ ReactとTypeSxcriptを学んだアウトプットのためにTrelloを参考と�
 ## アプリケーションの機能
 
 ◎ユーザー認証(新規登録)
-・新規登録/ログイン
+<ul>
+  <li>新規登録/ログイン</li>
+  <li>ボード登録</li>
+  <li>リスト作成/更新/削除</li>
+  <li>タスク作成/更新/削除</li>
+</ul>
 
-・ボード登録
-・リスト作成/更新/削除
-・タスク作成/更新/削除
-
-※テストアカウント
+<br>※テストアカウント
 email :test@gmail.com　passwoerd: test1234 
+</br>
 
 ◎ボード選択 or ボード作成
 ・ログインもしくは新規登録後にボード選択画面へ。
+
 <img width="1430" alt="スクリーンショット 2021-03-24 15 57 41" src="https://user-images.githubusercontent.com/70302566/112268021-ad580f80-8cb9-11eb-8b05-a821ab3d572b.png">
 
 ボードの新規作成、ボードの選択することでメイン画面へ遷移します。
+
 <img width="1296" alt="スクリーンショット 2021-03-24 16 00 22" src="https://user-images.githubusercontent.com/70302566/112268264-0b84f280-8cba-11eb-84cc-aab8bc474d64.png">
 
 
