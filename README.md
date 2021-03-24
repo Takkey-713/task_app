@@ -17,12 +17,15 @@ ReactとTypeSxcriptを学んだアウトプットのためにTrelloを参考と�
 
 
 ## 使用した技術
-・TypeScript
-・React-Hooks
-→useReducer、useState,useContext、useHistory
-・React-Modal
-・React-Router
-関数コンポーネントとReact-Hooksを用いて実装しております。
+<ul>
+  <li>TypeScript</li>
+  <li>React-Hooks</li>
+  <li>useReducer、useState,useContext、useHistory</li>
+  <li>React-Modal</li>
+  <li>React-Router</li>
+</ul>
+<br>関数コンポーネントとReact-Hooksを用いて実装しております。</br>
+
 
 ## アプリケーションの機能
 
