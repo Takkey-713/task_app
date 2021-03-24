@@ -88,12 +88,13 @@ email :test@gmail.com　passwoerd: test1234
 <img width="1002" alt="スクリーンショット 2021-03-05 23 09 58" src="https://user-images.githubusercontent.com/70302566/110126588-ea8e5780-7e07-11eb-8229-2c4310769a6b.png">
 
 リストにある「:アイコン」をクリックすると、モーダルが展開されます。そこでタスクの更新、削除、追加、リストの削除が可能です。
-<img width="524" alt="スクリーンショット 2021-03-24 16 27 11" src="https://user-images.githubusercontent.com/70302566/112272293-5e14dd80-8cbf-11eb-8a6e-f32554afb327.png">
+
+<img width="1386" alt="スクリーンショット 2021-03-24 16 37 48" src="https://user-images.githubusercontent.com/70302566/112272441-8ac8f500-8cbf-11eb-84ec-04e1bf166cf0.png">
 
 リストを削除するボタンをクリックすると該当するリストとタスクが削除されます。
 
 ◎期限が過ぎたタスクの色を変更されます。
-期限がすぎるとタスク要素の表示が赤くなり、モーダルでは「期限が過ぎている」と表示されます。
+<br>期限がすぎるとタスク要素の表示が赤くなり、モーダルでは「期限が過ぎている」と表示されます。</br>
 <img width="1008" alt="スクリーンショット 2021-03-05 23 15 24" src="https://user-images.githubusercontent.com/70302566/110127318-d860e900-7e08-11eb-8198-d95275e3f783.png">
 
 
@@ -101,5 +102,5 @@ email :test@gmail.com　passwoerd: test1234
 <img width="998" alt="スクリーンショット 2021-03-05 23 15 31" src="https://user-images.githubusercontent.com/70302566/110127365-e44cab00-7e08-11eb-912d-db49d7dd9559.png">
 ※本日が3/5なので期限が3/5までのタスクは全て表示が赤くなります。
 
-以上が本アプリケーションの使い方になります。
+<br>以上が本アプリケーションの使い方になります。</br>
 
