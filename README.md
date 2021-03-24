@@ -1,29 +1,52 @@
-本アプリはtask_appはReactを用いたタスク管理アプリです。
-Hooksで実装しています。
+# 概要
 
-サーバーサイドは[こちら](https://github.com/Takkey-713/api)になります。
-[api-practice](https://github.com/Takkey-713/api-practice)をもとに作成しております。
+## アプリケーション名
+「task_app」
+Reactを用いたタスク管理アプリです。
+公開先: http://task-app-demo.com/
 
+## 作成背景
+ReactとTypeSxcriptを学んだアウトプットのためにTrelloを参考として作成しました。
+
+## アプリケーションについて
+本アプリケーションは、用途によってボードを使い分け、タスクの洗い出しや進捗の管理をすることができます。忘れ物をしないためのメモ帳として使用することが可能です。
+※個人のタスクを管理するアプリケーションとなっておりますので、チームでの使用はできません。
 
 ※アプリケーション動作GIF
-![TaskApp](https://user-images.githubusercontent.com/70302566/110208807-a022de80-7ecc-11eb-908a-841ddfe21210.gif)
+![TaskApp](https://user-images.githubusercontent.com/70302566/112268899-01afbf00-8cbb-11eb-938a-135829f6cf84.gif)
 
 
+## 使用した技術
+・TypeScript
+・React-Hooks
+→useReducer、useState,useContext、useHistory
+・React-Modal
+・React-Router
+関数コンポーネントとReact-Hooksを用いて実装しております。
 
+## アプリケーションの機能
 
-ユーザー認証(新規登録)
-・emailとpasswordと確認passwordを入力します。
-<img width="881" alt="スクリーンショット 2021-03-05 22 31 57" src="https://user-images.githubusercontent.com/70302566/110122171-9cc32080-7e02-11eb-83e2-6545f06397a2.png">
+◎ユーザー認証(新規登録)
+・新規登録/ログイン
+
+・ボード登録
+・リスト作成/更新/削除
+・タスク作成/更新/削除
+
+※テストアカウント
+email :test@gmail.com　passwoerd: test1234 
+
+◎ボード選択 or ボード作成
+・ログインもしくは新規登録後にボード選択画面へ。
+<img width="1430" alt="スクリーンショット 2021-03-24 15 57 41" src="https://user-images.githubusercontent.com/70302566/112268021-ad580f80-8cb9-11eb-8b05-a821ab3d572b.png">
+
+ボードの新規作成、ボードの選択することでメイン画面へ遷移します。
+<img width="1296" alt="スクリーンショット 2021-03-24 16 00 22" src="https://user-images.githubusercontent.com/70302566/112268264-0b84f280-8cba-11eb-84cc-aab8bc474d64.png">
+
 
 ◎リストの作成
-・ログインもしくは新規登録後にリスト追加用の要素をクリックするとフォームに切り替わります。
-<img width="1200" alt="スクリーンショット 2021-03-05 22 32 28" src="https://user-images.githubusercontent.com/70302566/110122674-430f2600-7e03-11eb-8551-f6a9bf5c4606.png">
+メイン画面でリストを追加するをクリックするとテキストフォームが展開されるのでリストの名前を入力して追加するをクリックすると作成することができます。
 
-・リスト追加用の要素をクリックするとフォームに切り替わりました。
-<img width="1194" alt="スクリーンショット 2021-03-05 22 34 24" src="https://user-images.githubusercontent.com/70302566/110122767-5de19a80-7e03-11eb-9106-02be7faa7c36.png">
-
-・追加するをクリックすると新規リストが作成されます。
-<img width="1192" alt="スクリーンショット 2021-03-05 22 40 13" src="https://user-images.githubusercontent.com/70302566/110123256-055ecd00-7e04-11eb-8937-49b7e5893577.png">
 
 ◎タスクの作成
 ・作成したリスト要素にはタスクを作成するフォームがあり、クリックするとタスク作成フォームに切り替わります。
@@ -77,4 +100,3 @@ Hooksで実装しています。
 
 以上が本アプリケーションの使い方になります。
 
-現在レスポンシブ対応と本番環境へのアップロードしております。申し訳ございませんが、少々お待ちください。
