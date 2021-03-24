@@ -3,7 +3,7 @@
 ## アプリケーション名
 「task_app」
 Reactを用いたタスク管理アプリです。
-/br 公開先: http://task-app-demo.com/
+<br>公開先: http://task-app-demo.com/</br>
 
 ## 作成背景
 ReactとTypeSxcriptを学んだアウトプットのためにTrelloを参考として作成しました。
