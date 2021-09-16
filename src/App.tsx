@@ -46,7 +46,7 @@ export const App: React.FC = () => {
         window.location.pathname = "/";
       }
     } catch {
-      alert("通信に失敗しましたああああああああああああああああああ。");
+      alert("通信に失敗しました。");
     }
   };
 
